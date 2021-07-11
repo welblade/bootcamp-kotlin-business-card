@@ -1,7 +1,8 @@
-package com.github.welblade.businesscard
+package com.github.welblade.businesscard.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.github.welblade.businesscard.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
