@@ -1,9 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".ui.AddBusinessCardActivity">
+
+    <ImageButton
+        android:id="@+id/btn_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/ic_close"
+        android:backgroundTint="@color/white"
+        app:tint="@color/black"
+        android:contentDescription="@string/close" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        android:text="@string/new_business_card" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        android:layout_margin="16dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="@string/name">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_name"
+        android:layout_margin="16dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="@string/phone">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_phone"
+        android:layout_margin="16dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="@string/email">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_company"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_email"
+        android:layout_margin="16dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="@string/company">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_company"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_company"
+        android:layout_margin="16dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="@string/color">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp"
+        android:text="@string/save_card" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
