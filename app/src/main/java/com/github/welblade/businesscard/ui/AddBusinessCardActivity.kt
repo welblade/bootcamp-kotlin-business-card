@@ -29,7 +29,7 @@ class AddBusinessCardActivity : AppCompatActivity(), ColorPickerDialogListener {
     }
     private var customBackgroundColor:Int = Color.CYAN
 
-    private var DIALOG_ID = 0
+    private var dialogId = 0
 
     private fun insertListeners(){
         addCardBinding.btnClose.setOnClickListener{
@@ -38,7 +38,7 @@ class AddBusinessCardActivity : AppCompatActivity(), ColorPickerDialogListener {
         addCardBinding.btnColor.setOnClickListener {
             ColorPickerDialog.newBuilder()
                 .setDialogType(ColorPickerDialog.TYPE_CUSTOM)
-                .setDialogId(DIALOG_ID)
+                .setDialogId(dialogId)
                 .setAllowPresets(false)
                 .setColor(customBackgroundColor)
                 .setShowAlphaSlider(true)
@@ -61,7 +61,6 @@ class AddBusinessCardActivity : AppCompatActivity(), ColorPickerDialogListener {
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private fun changeBtnColorValues(color: Int){
         addCardBinding.btnColor.setBackgroundColor(color)
         addCardBinding.btnColor.text = getString(R.string.color_value, Integer.toHexString(color).uppercase())
@@ -73,6 +72,6 @@ class AddBusinessCardActivity : AppCompatActivity(), ColorPickerDialogListener {
     }
 
     override fun onDialogDismissed(dialogId: Int) {
-        Log.d("COLORPICKER", "onDialogDismissed() called with: dialogId = [" + dialogId + "]");
+        Log.d("COLORPICKER", "onDialogDismissed() called with: dialogId = [$dialogId]")
     }
 }

@@ -56,7 +56,7 @@ class Image {
                 Toast.makeText(context, R.string.capture_image_successful, Toast.LENGTH_SHORT).show()
             }
         }
-        private fun shareIntent(context: Context, imageUri: Uri) : Unit{
+        private fun shareIntent(context: Context, imageUri: Uri) {
             val shareIntent: Intent = Intent().apply{
                 action = Intent.ACTION_SEND
                 putExtra(Intent.EXTRA_STREAM, imageUri)
