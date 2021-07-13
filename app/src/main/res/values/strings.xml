@@ -10,4 +10,5 @@
     <string name="company">Company</string>
     <string name="color">Color</string>
     <string name="save_card">Save this card</string>
+    <string name="save_card_successful">The card has been successfully saved.</string>
 </resources>

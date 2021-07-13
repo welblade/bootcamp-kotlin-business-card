@@ -63,6 +63,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifeCycleVersion")
     implementation("androidx.lifecycle:lifecycle-common-java8:$lifeCycleVersion")
 
+    implementation("com.jaredrummler:colorpicker:1.1.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")

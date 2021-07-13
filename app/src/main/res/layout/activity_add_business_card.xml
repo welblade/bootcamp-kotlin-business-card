@@ -94,22 +94,23 @@
             android:inputType="text"
             />
     </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_color"
-        android:layout_width="match_parent"
+
+    <Button
+        android:id="@+id/btn_color"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/til_company"
+        app:layout_constraintTop_toBottomOf="@id/til_company"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp"
+        android:padding="16dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:hint="@string/color">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_color"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:textColor="@color/cardview_dark_background"
+        android:textAlignment="textStart"
+        android:backgroundTint="@color/teal_200"
+        android:hint="@string/color"
+        android:contentDescription="@string/color"
+        android:text="@color/teal_200" />
     <Button
         android:id="@+id/btn_save"
         android:layout_width="0dp"

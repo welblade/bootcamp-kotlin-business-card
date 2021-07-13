@@ -6,55 +6,60 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     >
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_card"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintDimensionRatio="3.5:2"
         android:layout_margin="8dp"
+        android:clickable="true"
         app:cardElevation="2dp"
-        >
+        app:cardCornerRadius="8dp"
+        app:layout_constraintDimensionRatio="3.5:2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="12dp"
-            >
+            android:padding="12dp">
+
             <TextView
                 android:id="@+id/tv_name"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                style="@style/TextAppearance.MaterialComponents.Headline6"
                 tools:text="Wellington Oliveira dos Santos" />
+
             <TextView
                 android:id="@+id/tv_phone"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_name"
-                style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 tools:text="(XX) XXXX-XXXX" />
+
             <TextView
                 android:id="@+id/tv_email"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_phone"
-                style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 tools:text="email@exemplo.com.br" />
 
             <TextView
                 android:id="@+id/tv_company"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
 
-                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                app:layout_constraintEnd_toEndOf="parent"
                 tools:text="Welblade Incorporated" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
