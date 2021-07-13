@@ -13,12 +13,14 @@
         android:layout_height="0dp"
         android:layout_margin="8dp"
         android:clickable="true"
+        android:focusable="true"
         app:cardElevation="2dp"
         app:cardCornerRadius="8dp"
         app:layout_constraintDimensionRatio="3.5:2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+       >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

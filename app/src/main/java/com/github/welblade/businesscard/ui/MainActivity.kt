@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.welblade.businesscard.App
 import com.github.welblade.businesscard.databinding.ActivityMainBinding
+import com.github.welblade.businesscard.util.Image
 
 class MainActivity : AppCompatActivity() {
     private val mainBinding: ActivityMainBinding by lazy {
@@ -39,6 +40,9 @@ class MainActivity : AppCompatActivity() {
                 AddBusinessCardActivity::class.java
             )
             startActivity(intent)
+        }
+        adapter.shareListener = {
+                card -> Image.share(this@MainActivity,card)
         }
     }
 

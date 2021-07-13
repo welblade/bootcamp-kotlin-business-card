@@ -50,7 +50,10 @@ class AddBusinessCardActivity : AppCompatActivity(), ColorPickerDialogListener {
                 phone = addCardBinding.tilPhone.editText?.text.toString(),
                 email = addCardBinding.tilEmail.editText?.text.toString(),
                 company = addCardBinding.tilCompany.editText?.text.toString(),
-                customBackground =  addCardBinding.btnColor.text.toString()
+                customBackground =  getString(
+                    R.string.color_hexadecimal,
+                    Integer.toHexString(customBackgroundColor).uppercase()
+                )
             )
             mainViewModel.insert(businessCard)
             Toast.makeText(this, R.string.save_card_successful, Toast.LENGTH_SHORT).show()
@@ -61,7 +64,7 @@ class AddBusinessCardActivity : AppCompatActivity(), ColorPickerDialogListener {
     @SuppressLint("SetTextI18n")
     private fun changeBtnColorValues(color: Int){
         addCardBinding.btnColor.setBackgroundColor(color)
-        addCardBinding.btnColor.text = "#" + Integer.toHexString(color).uppercase()
+        addCardBinding.btnColor.text = getString(R.string.color_value, Integer.toHexString(color).uppercase())
     }
 
     override fun onColorSelected(dialogId: Int, color: Int) {

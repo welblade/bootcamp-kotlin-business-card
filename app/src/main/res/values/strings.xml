@@ -9,6 +9,10 @@
     <string name="email">Email</string>
     <string name="company">Company</string>
     <string name="color">Color</string>
+    <string name="color_hexadecimal">#%1$s</string>
+    <string name="color_value">Background color: #%1$s</string>
     <string name="save_card">Save this card</string>
     <string name="save_card_successful">The card has been successfully saved.</string>
+    <string name="capture_image_successful">The card has been successfully captured.</string>
+    <string name="share">Share this card</string>
 </resources>
