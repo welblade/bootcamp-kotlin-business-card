@@ -14,6 +14,7 @@
         android:layout_margin="8dp"
         android:clickable="true"
         android:focusable="true"
+        android:checkable="true"
         app:cardElevation="2dp"
         app:cardCornerRadius="8dp"
         app:layout_constraintDimensionRatio="3.5:2"
