@@ -6,6 +6,10 @@ import androidx.annotation.IntRange
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_DRAGGING
 import androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE
+import kotlin.math.ceil
+import kotlin.math.floor
+import kotlin.math.max
+import kotlin.math.min
 
 class StackLayoutManager(scrollOrientation: ScrollOrientation,
                          visibleCount: Int,
@@ -79,7 +83,7 @@ class StackLayoutManager(scrollOrientation: ScrollOrientation,
      */
 
     fun setPagerFlingVelocity(@IntRange(from = 0, to=Int.MAX_VALUE.toLong()) velocity: Int) {
-        mPagerFlingVelocity = Math.min(Int.MAX_VALUE, Math.max(0, velocity))
+        mPagerFlingVelocity = min(Int.MAX_VALUE, max(0, velocity))
     }
 
     /**
@@ -94,7 +98,7 @@ class StackLayoutManager(scrollOrientation: ScrollOrientation,
      * @param count 可见 itemView，默认为3
      */
     fun setVisibleItemCount(@IntRange(from = 1, to = Long.MAX_VALUE)count: Int) {
-        mVisibleItemCount = Math.min(itemCount - 1, Math.max(1, count))
+        mVisibleItemCount = min(itemCount - 1, max(1, count))
         mAnimation?.setVisibleCount(mVisibleItemCount)
     }
 
@@ -159,10 +163,10 @@ class StackLayoutManager(scrollOrientation: ScrollOrientation,
             return 0
         }
         return when(mScrollOrientation) {
-            ScrollOrientation.RIGHT_TO_LEFT -> Math.floor((mScrollOffset * 1.0 / width)).toInt()
-            ScrollOrientation.LEFT_TO_RIGHT -> itemCount - 1 - Math.ceil((mScrollOffset * 1.0 / width)).toInt()
-            ScrollOrientation.BOTTOM_TO_TOP -> Math.floor((mScrollOffset * 1.0 / height)).toInt()
-            ScrollOrientation.TOP_TO_BOTTOM -> itemCount - 1 - Math.ceil((mScrollOffset * 1.0 / height)).toInt()
+            ScrollOrientation.RIGHT_TO_LEFT -> floor((mScrollOffset * 1.0 / width)).toInt()
+            ScrollOrientation.LEFT_TO_RIGHT -> itemCount - 1 - ceil((mScrollOffset * 1.0 / width)).toInt()
+            ScrollOrientation.BOTTOM_TO_TOP -> floor((mScrollOffset * 1.0 / height)).toInt()
+            ScrollOrientation.TOP_TO_BOTTOM -> itemCount - 1 - ceil((mScrollOffset * 1.0 / height)).toInt()
         }
     }
 
@@ -428,8 +432,8 @@ class StackLayoutManager(scrollOrientation: ScrollOrientation,
 
     private fun getValidOffset(expectOffset: Int): Int {
         return when(mScrollOrientation) {
-            ScrollOrientation.RIGHT_TO_LEFT, ScrollOrientation.LEFT_TO_RIGHT -> Math.max(Math.min(width * (itemCount - 1), expectOffset), 0)
-            else -> Math.max(Math.min(height * (itemCount - 1), expectOffset), 0)
+            ScrollOrientation.RIGHT_TO_LEFT, ScrollOrientation.LEFT_TO_RIGHT -> max(min(width * (itemCount - 1), expectOffset), 0)
+            else -> max(min(height * (itemCount - 1), expectOffset), 0)
         }
     }
 

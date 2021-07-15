@@ -25,4 +25,6 @@ class BusinessCardRepository(private val dao: BusinessCardDao) {
     }
 
     fun getAll() = dao.getAll()
+
+    fun findById(businessCardId: Int):BusinessCard = dao.findById(businessCardId)
 }

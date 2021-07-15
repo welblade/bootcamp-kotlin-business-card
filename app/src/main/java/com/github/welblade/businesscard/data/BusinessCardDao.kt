@@ -17,4 +17,7 @@ interface BusinessCardDao {
     @Update
     fun update(businessCard: BusinessCard)
 
+    @Query("SELECT * FROM BusinessCard WHERE id = :businessCardId")
+    fun findById(businessCardId: Int): BusinessCard
+
 }

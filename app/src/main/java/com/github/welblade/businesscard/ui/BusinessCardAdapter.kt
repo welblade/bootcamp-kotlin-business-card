@@ -14,8 +14,8 @@ import com.github.welblade.businesscard.databinding.ListItemBusinessCardBinding
 class BusinessCardAdapter : ListAdapter<BusinessCard, BusinessCardAdapter.ViewHolder> (DiffCallback()) {
     var cardClickListener: (View) -> Unit = {}
     var shareListener: (View) -> Unit = {}
-    var deleteListener: (View, BusinessCard) -> Unit = { view: View, businessCard: BusinessCard -> }
-    var editListener: (View) -> Unit = {}
+    var deleteListener: (View, BusinessCard) -> Unit = { _, _: BusinessCard -> }
+    var editListener: (View, BusinessCard) -> Unit = { _, _: BusinessCard -> }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -45,24 +45,35 @@ class BusinessCardAdapter : ListAdapter<BusinessCard, BusinessCardAdapter.ViewHo
             listItemBinding.tvEmail.text = item.email
             listItemBinding.tvCompany.text = item.company
             listItemBinding.btnShare.setOnClickListener{
-                shareListener(it)
+                shareListener(listItemBinding.cvCard)
             }
             listItemBinding.cvCard.setOnClickListener {
                 cardClickListener(it)
             }
             listItemBinding.btnDelete.setOnClickListener {
-                deleteListener(it, item)
+                deleteListener(listItemBinding.cvCard, item)
+            }
+            listItemBinding.btnEdit.setOnClickListener {
+                editListener(listItemBinding.cvCard, item)
             }
         }
     }
 }
 class DiffCallback: DiffUtil.ItemCallback<BusinessCard>(){
     override fun areItemsTheSame(oldItem: BusinessCard, newItem: BusinessCard): Boolean {
-        return oldItem.id == newItem.id
+        return  oldItem.id == newItem.id &&
+                oldItem.name == newItem.name &&
+                oldItem.email == newItem.email &&
+                oldItem.company == newItem.company &&
+                oldItem.customBackground == newItem.customBackground
     }
 
     override fun areContentsTheSame(oldItem: BusinessCard, newItem: BusinessCard): Boolean {
-        return  oldItem.id == newItem.id
+        return  oldItem.id == newItem.id &&
+                oldItem.name == newItem.name &&
+                oldItem.email == newItem.email &&
+                oldItem.company == newItem.company &&
+                oldItem.customBackground == newItem.customBackground
     }
 
 }

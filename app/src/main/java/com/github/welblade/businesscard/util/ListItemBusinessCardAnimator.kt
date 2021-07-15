@@ -31,6 +31,13 @@ class ListItemBusinessCardAnimator {
             }
 
         }
+
+        fun fadeOutCard(cardView: MaterialCardView) :ObjectAnimator {
+            return ObjectAnimator.ofFloat(cardView, "alpha", 0f).apply{
+                duration = 250
+                start()
+            }
+        }
     }
 }
 

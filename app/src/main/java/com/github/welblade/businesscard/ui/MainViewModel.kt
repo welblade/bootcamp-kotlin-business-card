@@ -20,6 +20,10 @@ class MainViewModel(private val businessCardRepository: BusinessCardRepository) 
     fun delete(businessCard: BusinessCard){
         businessCardRepository.delete(businessCard)
     }
+
+    fun findBussinessCardById(businessCardId: Int): BusinessCard {
+        return businessCardRepository.findById(businessCardId)
+    }
 }
 
 class MainViewModelFactory(private val repository: BusinessCardRepository):

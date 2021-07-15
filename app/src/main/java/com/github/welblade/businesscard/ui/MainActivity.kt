@@ -4,10 +4,13 @@ import android.Manifest
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.doOnEnd
 import androidx.core.app.ActivityCompat
 import com.github.welblade.businesscard.App
+import com.github.welblade.businesscard.R
 import com.github.welblade.businesscard.databinding.ActivityMainBinding
 import com.github.welblade.businesscard.util.Image
 import com.github.welblade.businesscard.util.ListItemBusinessCardAnimator
@@ -26,13 +29,23 @@ class MainActivity : AppCompatActivity() {
         BusinessCardAdapter()
     }
 
+    private val layoutManager: StackLayoutManager by lazy {
+        StackLayoutManager(ScrollOrientation.TOP_TO_BOTTOM,7).apply {
+            setItemOffset(32)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mainBinding.root)
         setUpPermissions()
         setUpListLayout()
-        getAllBusinessCards()
         insertListeners()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        getAllBusinessCards()
     }
 
     private fun setUpPermissions() {
@@ -49,10 +62,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
     private fun setUpListLayout(){
-        mainBinding.rvCardList.layoutManager = StackLayoutManager(ScrollOrientation.TOP_TO_BOTTOM).apply {
-            //setVisibleItemCount(5)
-            setItemOffset(50)
-        }
+        mainBinding.rvCardList.layoutManager = layoutManager
         mainBinding.rvCardList.adapter = adapter
     }
     private fun insertListeners() {
@@ -64,30 +74,52 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        adapter.cardClickListener = { card -> run {
-            ListItemBusinessCardAnimator.rotateCardView(card as MaterialCardView)
+        adapter.editListener = { cardView, businessCard ->
+            val intent = Intent(
+                this@MainActivity,
+                AddBusinessCardActivity::class.java
+            )
+            intent.putExtra("cardId", businessCard.id)
+            startActivity(intent)
+            ListItemBusinessCardAnimator.rotateCardView(cardView as MaterialCardView)
         }
 
+        adapter.cardClickListener = { card ->
+            run {
+                ListItemBusinessCardAnimator.rotateCardView(card as MaterialCardView)
+            }
         }
-        adapter.shareListener = {
-            button -> run {
-                val card = button.parent.parent as MaterialCardView
+        adapter.shareListener = { cardView ->
+            run {
+                val card = cardView as MaterialCardView
                 ListItemBusinessCardAnimator.rotateCardView(card)?.doOnEnd {
                     Image.share(this@MainActivity, card)
                 }
             }
         }
-        adapter.deleteListener = { _, card ->
-            mainViewModel.delete(card)
+        adapter.deleteListener = { cardView, businessCard ->
+            run {
+                val mCardView = cardView as MaterialCardView
+                val layout = mCardView.parent as ConstraintLayout
+                AlertDialog.Builder(this@MainActivity).apply {
+                    setMessage(R.string.are_you_sure_you_want_delete_this_card)
+                    setCancelable(false)
+                    setPositiveButton(R.string.yes) { _, _ ->
+                       ListItemBusinessCardAnimator.fadeOutCard(mCardView).doOnEnd {
+                           mainBinding.rvCardList.removeView(layout)
+                           mainViewModel.delete(businessCard)
+                       }
+                    }
+                    setNegativeButton(R.string.no) { dialog, _ -> dialog.dismiss() }
+                    create()
+                }.show()
+            }
         }
     }
-
     private fun getAllBusinessCards(){
         mainViewModel.getAll().observe(
             this, { businessCards -> run {
-                setUpListLayout()
                 adapter.submitList(businessCards)
-                mainBinding.rvCardList.invalidate()
                 }
             }
         )

@@ -18,4 +18,5 @@
     <string name="are_you_sure_you_want_delete_this_card">Are you sure you want to Delete?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="edit_business_card">Edit Business Card</string>
 </resources>

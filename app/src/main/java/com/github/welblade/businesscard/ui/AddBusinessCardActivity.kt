@@ -23,13 +23,37 @@ class AddBusinessCardActivity : AppCompatActivity(), ColorPickerDialogListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(addCardBinding.root)
+        setUpCard()
         insertListeners()
         changeBtnColorValues(customBackgroundColor)
     }
     private var customBackgroundColor:Int = Color.CYAN
-
+    private var cardId = 0
     private var dialogId = 0
 
+    private fun setUpCard(){
+        cardId = intent.getIntExtra("cardId",0)
+        if (cardId == 0){
+            return
+        }
+        Thread {
+            try {
+                val businessCard: BusinessCard? = mainViewModel.findBussinessCardById(cardId)
+                cardId = businessCard?.id ?: -1
+                runOnUiThread {
+                    addCardBinding.tvTitle.text = getString(R.string.edit_business_card)
+                    addCardBinding.tilName.editText?.setText(businessCard?.name)
+                    addCardBinding.tilPhone.editText?.setText(businessCard?.phone)
+                    addCardBinding.tilEmail.editText?.setText(businessCard?.email)
+                    addCardBinding.tilCompany.editText?.setText(businessCard?.company)
+                    val color = Color.parseColor(businessCard?.customBackground ?: "#FF00FFFF")
+                    changeBtnColorValues(color)
+                }
+            } catch (err: Exception) {
+                Log.e("DBHELPER", "Consulta: " + err.message.toString())
+            }
+        }.start()
+    }
     private fun insertListeners(){
         addCardBinding.btnClose.setOnClickListener{
             finish()
@@ -45,6 +69,7 @@ class AddBusinessCardActivity : AppCompatActivity(), ColorPickerDialogListener {
         }
         addCardBinding.btnSave.setOnClickListener {
             val businessCard = BusinessCard(
+                id = cardId,
                 name = addCardBinding.tilName.editText?.text.toString(),
                 phone = addCardBinding.tilPhone.editText?.text.toString(),
                 email = addCardBinding.tilEmail.editText?.text.toString(),
@@ -54,7 +79,12 @@ class AddBusinessCardActivity : AppCompatActivity(), ColorPickerDialogListener {
                     Integer.toHexString(customBackgroundColor).uppercase()
                 )
             )
-            mainViewModel.insert(businessCard)
+            if(cardId == 0){
+                mainViewModel.insert(businessCard)
+            } else {
+                mainViewModel.update(businessCard)
+            }
+
             Toast.makeText(this, R.string.save_card_successful, Toast.LENGTH_SHORT).show()
             finish()
         }
