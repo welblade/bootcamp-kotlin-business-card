@@ -12,7 +12,10 @@ import com.github.welblade.businesscard.data.BusinessCard
 import com.github.welblade.businesscard.databinding.ListItemBusinessCardBinding
 
 class BusinessCardAdapter : ListAdapter<BusinessCard, BusinessCardAdapter.ViewHolder> (DiffCallback()) {
+    var cardClickListener: (View) -> Unit = {}
     var shareListener: (View) -> Unit = {}
+    var deleteListener: (View) -> Unit = {}
+    var editListener: (View) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -41,8 +44,11 @@ class BusinessCardAdapter : ListAdapter<BusinessCard, BusinessCardAdapter.ViewHo
             listItemBinding.tvPhone.text = item.phone
             listItemBinding.tvEmail.text = item.email
             listItemBinding.tvCompany.text = item.company
-            listItemBinding.cvCard.setOnClickListener {
+            listItemBinding.btnShare.setOnClickListener{
                 shareListener(it)
+            }
+            listItemBinding.cvCard.setOnClickListener {
+                cardClickListener(it)
             }
         }
     }

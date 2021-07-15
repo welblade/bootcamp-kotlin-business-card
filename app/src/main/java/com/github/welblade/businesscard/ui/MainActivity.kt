@@ -2,14 +2,19 @@ package com.github.welblade.businesscard.ui
 
 import android.Manifest
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.animation.doOnEnd
 import androidx.core.app.ActivityCompat
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.welblade.businesscard.App
 import com.github.welblade.businesscard.databinding.ActivityMainBinding
 import com.github.welblade.businesscard.util.Image
+import com.github.welblade.businesscard.util.ListItemBusinessCardAnimator
+import com.google.android.material.card.MaterialCardView
+import com.hirayclay.Align as StackLayoutAlign
+import com.hirayclay.Config as StackLayoutConfig
+import com.hirayclay.StackLayoutManager as StackLayoutManagerHC
 
 class MainActivity : AppCompatActivity() {
     private val mainBinding: ActivityMainBinding by lazy {
@@ -26,15 +31,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(mainBinding.root)
         setUpPermissions()
-        mainBinding.rvCardList.layoutManager = LinearLayoutManager(this)
+        val config: StackLayoutConfig = StackLayoutConfig().apply{
+            secondaryScale = 0.95f
+            scaleRatio = 0.4f
+            maxStackCount = 5
+            initialStackCount = 1
+            space = 45
+            parallex = 1.5f //parallex factor
+            align= StackLayoutAlign.TOP
+        }
+        mainBinding.rvCardList.layoutManager = StackLayoutManagerHC(config)
         mainBinding.rvCardList.adapter = adapter
         getAllBusinessCards()
         insertListeners()
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        getAllBusinessCards()
     }
 
     private fun setUpPermissions() {
@@ -58,8 +67,17 @@ class MainActivity : AppCompatActivity() {
             )
             startActivity(intent)
         }
+
+        adapter.cardClickListener = { card ->
+            ListItemBusinessCardAnimator.rotateCardView(card as MaterialCardView)
+        }
         adapter.shareListener = {
-                card -> Image.share(this@MainActivity,card)
+            button -> run {
+                val card = button.parent.parent as MaterialCardView
+                ListItemBusinessCardAnimator.rotateCardView(card)?.doOnEnd {
+                    Image.share(this@MainActivity, card)
+                }
+            }
         }
     }
 
