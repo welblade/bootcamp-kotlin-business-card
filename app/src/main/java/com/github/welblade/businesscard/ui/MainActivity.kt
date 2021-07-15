@@ -12,9 +12,8 @@ import com.github.welblade.businesscard.databinding.ActivityMainBinding
 import com.github.welblade.businesscard.util.Image
 import com.github.welblade.businesscard.util.ListItemBusinessCardAnimator
 import com.google.android.material.card.MaterialCardView
-import com.hirayclay.Align as StackLayoutAlign
-import com.hirayclay.Config as StackLayoutConfig
-import com.hirayclay.StackLayoutManager as StackLayoutManagerHC
+import com.littlemango.stacklayoutmanager.StackLayoutManager
+import com.littlemango.stacklayoutmanager.StackLayoutManager.ScrollOrientation
 
 class MainActivity : AppCompatActivity() {
     private val mainBinding: ActivityMainBinding by lazy {
@@ -50,19 +49,13 @@ class MainActivity : AppCompatActivity() {
         )
     }
     private fun setUpListLayout(){
-        val config: StackLayoutConfig = StackLayoutConfig().apply{
-            secondaryScale = 0.95f
-            scaleRatio = 0.4f
-            maxStackCount = 5
-            initialStackCount = adapter.itemCount -1
-            space = 45
-            parallex = 1.5f //parallex factor
-            align= StackLayoutAlign.TOP
+        mainBinding.rvCardList.layoutManager = StackLayoutManager(ScrollOrientation.TOP_TO_BOTTOM).apply {
+            //setVisibleItemCount(5)
+            setItemOffset(50)
         }
-        mainBinding.rvCardList.layoutManager = StackLayoutManagerHC(config)
         mainBinding.rvCardList.adapter = adapter
     }
-    private fun insertListeners(){
+    private fun insertListeners() {
         mainBinding.fbAddCard.setOnClickListener {
             val intent = Intent(
                 this@MainActivity,
@@ -71,8 +64,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        adapter.cardClickListener = { card ->
+        adapter.cardClickListener = { card -> run {
             ListItemBusinessCardAnimator.rotateCardView(card as MaterialCardView)
+        }
+
         }
         adapter.shareListener = {
             button -> run {
@@ -82,7 +77,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        adapter.deleteListener = { button, card ->
+        adapter.deleteListener = { _, card ->
             mainViewModel.delete(card)
         }
     }

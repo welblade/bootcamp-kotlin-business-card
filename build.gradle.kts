@@ -13,13 +13,6 @@ buildscript {
         // in the individual module build.gradle.kts files
     }
 }
-allprojects {
-    repositories {
-       // maven(url = "https://jitpack.io")
-        maven(uri("https://jitpack.io" ) )
-    }
-}
-
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
 }
