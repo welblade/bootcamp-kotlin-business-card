@@ -14,6 +14,12 @@ class MainViewModel(private val businessCardRepository: BusinessCardRepository) 
     fun insert(businessCard: BusinessCard){
         businessCardRepository.insert(businessCard)
     }
+    fun update(businessCard: BusinessCard){
+        businessCardRepository.update(businessCard)
+    }
+    fun delete(businessCard: BusinessCard){
+        businessCardRepository.delete(businessCard)
+    }
 }
 
 class MainViewModelFactory(private val repository: BusinessCardRepository):
@@ -24,6 +30,4 @@ class MainViewModelFactory(private val repository: BusinessCardRepository):
             return MainViewModel(repository) as T
         throw IllegalArgumentException("Unknow ViewModel class")
     }
-
-
 }

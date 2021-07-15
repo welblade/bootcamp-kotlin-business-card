@@ -14,7 +14,7 @@ import com.github.welblade.businesscard.databinding.ListItemBusinessCardBinding
 class BusinessCardAdapter : ListAdapter<BusinessCard, BusinessCardAdapter.ViewHolder> (DiffCallback()) {
     var cardClickListener: (View) -> Unit = {}
     var shareListener: (View) -> Unit = {}
-    var deleteListener: (View) -> Unit = {}
+    var deleteListener: (View, BusinessCard) -> Unit = { view: View, businessCard: BusinessCard -> }
     var editListener: (View) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -49,6 +49,9 @@ class BusinessCardAdapter : ListAdapter<BusinessCard, BusinessCardAdapter.ViewHo
             }
             listItemBinding.cvCard.setOnClickListener {
                 cardClickListener(it)
+            }
+            listItemBinding.btnDelete.setOnClickListener {
+                deleteListener(it, item)
             }
         }
     }

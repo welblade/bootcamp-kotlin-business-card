@@ -15,4 +15,7 @@
     <string name="save_card_successful">The card has been successfully saved.</string>
     <string name="capture_image_successful">The card has been successfully captured.</string>
     <string name="share">Share this card</string>
+    <string name="are_you_sure_you_want_delete_this_card">Are you sure you want to Delete?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

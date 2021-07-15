@@ -31,17 +31,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(mainBinding.root)
         setUpPermissions()
-        val config: StackLayoutConfig = StackLayoutConfig().apply{
-            secondaryScale = 0.95f
-            scaleRatio = 0.4f
-            maxStackCount = 5
-            initialStackCount = 1
-            space = 45
-            parallex = 1.5f //parallex factor
-            align= StackLayoutAlign.TOP
-        }
-        mainBinding.rvCardList.layoutManager = StackLayoutManagerHC(config)
-        mainBinding.rvCardList.adapter = adapter
+        setUpListLayout()
         getAllBusinessCards()
         insertListeners()
     }
@@ -58,6 +48,19 @@ class MainActivity : AppCompatActivity() {
             arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
             1
         )
+    }
+    private fun setUpListLayout(){
+        val config: StackLayoutConfig = StackLayoutConfig().apply{
+            secondaryScale = 0.95f
+            scaleRatio = 0.4f
+            maxStackCount = 5
+            initialStackCount = adapter.itemCount -1
+            space = 45
+            parallex = 1.5f //parallex factor
+            align= StackLayoutAlign.TOP
+        }
+        mainBinding.rvCardList.layoutManager = StackLayoutManagerHC(config)
+        mainBinding.rvCardList.adapter = adapter
     }
     private fun insertListeners(){
         mainBinding.fbAddCard.setOnClickListener {
@@ -79,11 +82,19 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+        adapter.deleteListener = { button, card ->
+            mainViewModel.delete(card)
+        }
     }
 
     private fun getAllBusinessCards(){
         mainViewModel.getAll().observe(
-            this, { businessCards -> adapter.submitList(businessCards)}
+            this, { businessCards -> run {
+                setUpListLayout()
+                adapter.submitList(businessCards)
+                mainBinding.rvCardList.invalidate()
+                }
+            }
         )
     }
 }
