@@ -12,3 +12,7 @@ Em adicção ao aplicativo do instrutor eu adicionei:
 * ao clicar no cartão, ele rotaciona, expondo os botões de ação remover, editar, e compatilhar
 * Mudado o layout da lista de cartões
 * algumas alterações no layout em geral
+
+Previsualização
+
+![Previsualização](https://github.com/welblade/welblade/blob/main/images/preview.gif?raw=true)
