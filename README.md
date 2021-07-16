@@ -7,4 +7,8 @@ Objetivo da atividade é criar uma aplicação para gerar o seu próprio cartão
 Aplicativo de lista de cartão de visita onde é possível manter os dados nome, empresa, telefone de contato, email e cor de fundo do cartão utilizando banco de dados Room.
 
 Em adicção ao aplicativo do instrutor eu adicionei:
-* Um modo de selecionar a cor de fundo, sem precisar que o usuário digite manualmente.
+* Um modo de selecionar a cor de fundo do cartão, sem precisar que o usuário digite manualmente.
+* Adicionadas função para excluir e editar os cartões  
+* ao clicar no cartão, ele rotaciona, expondo os botões de ação remover, editar, e compatilhar
+* Mudado o layout da lista de cartões
+* algumas alterações no layout em geral
