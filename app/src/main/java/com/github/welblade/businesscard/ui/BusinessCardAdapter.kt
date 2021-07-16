@@ -35,6 +35,9 @@ class BusinessCardAdapter : ListAdapter<BusinessCard, BusinessCardAdapter.ViewHo
             try {
                 val color = Color.parseColor(item.customBackground)
                 listItemBinding.cvCard.setCardBackgroundColor(color)
+                listItemBinding.btnEdit.setBackgroundColor(color)
+                listItemBinding.btnShare.setBackgroundColor(color)
+                listItemBinding.btnDelete.setBackgroundColor(color)
             }catch (err: Exception){
                 Log.e("CARD_ADAPTER", err.message.toString())
             }catch (err: IllegalArgumentException ){

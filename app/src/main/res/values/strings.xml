@@ -14,9 +14,14 @@
     <string name="save_card">Save this card</string>
     <string name="save_card_successful">The card has been successfully saved.</string>
     <string name="capture_image_successful">The card has been successfully captured.</string>
-    <string name="share">Share this card</string>
+    <string name="share">Share</string>
     <string name="are_you_sure_you_want_delete_this_card">Are you sure you want to Delete?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="edit_business_card">Edit Business Card</string>
+    <string name="delete_this_business_card">Delete this business card</string>
+    <string name="edit_this_card_information">Edit this card information</string>
+    <string name="share_this_card">Share this card</string>
+    <string name="remove">Remove</string>
+    <string name="edit">Edit</string>
 </resources>

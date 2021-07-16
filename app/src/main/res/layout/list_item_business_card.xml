@@ -7,7 +7,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:clipChildren = "false"
-
     >
 
     <com.google.android.material.card.MaterialCardView
@@ -76,7 +75,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="12dp"
-                android:visibility="gone">
+                android:visibility="gone"
+                tools:visibility="visible">
 
             <ImageButton
                     android:id="@+id/btn_delete"
@@ -87,7 +87,20 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.10"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@string/delete_this_business_card"
+                    app:tint="@color/dark_grey" />
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/btn_delete"
+                    app:layout_constraintTop_toBottomOf="@id/btn_delete"
+                    app:layout_constraintEnd_toEndOf="@id/btn_delete"
+                    style="@style/TextAppearance.MaterialComponents.Caption"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/remove" />
+
+
 
             <ImageButton
                     android:id="@+id/btn_edit"
@@ -98,7 +111,18 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.30"
                     app:layout_constraintStart_toEndOf="@id/btn_delete"
-                    app:layout_constraintTop_toTopOf="@id/btn_delete" />
+                    app:layout_constraintTop_toTopOf="@id/btn_delete"
+                    android:contentDescription="@string/edit_this_card_information"
+                    app:tint="@color/dark_grey"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/btn_edit"
+                    app:layout_constraintTop_toBottomOf="@id/btn_edit"
+                    app:layout_constraintEnd_toEndOf="@id/btn_edit"
+                    android:layout_marginTop="8dp"
+                    style="@style/TextAppearance.MaterialComponents.Caption"
+                    android:text="@string/edit" />
 
             <ImageButton
                     android:id="@+id/btn_share"
@@ -109,7 +133,18 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.80"
                     app:layout_constraintStart_toEndOf="@id/btn_delete"
-                    app:layout_constraintTop_toTopOf="@id/btn_delete" />
+                    app:layout_constraintTop_toTopOf="@id/btn_delete"
+                    android:contentDescription="@string/share_this_card"
+                    app:tint="@color/dark_grey" />
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/btn_share"
+                    app:layout_constraintTop_toBottomOf="@id/btn_share"
+                    app:layout_constraintEnd_toEndOf="@id/btn_share"
+                    android:layout_marginTop="8dp"
+                    style="@style/TextAppearance.MaterialComponents.Caption"
+                    android:text="@string/share" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>

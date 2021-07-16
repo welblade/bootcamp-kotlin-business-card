@@ -46,7 +46,7 @@ class AddBusinessCardActivity : AppCompatActivity(), ColorPickerDialogListener {
                     addCardBinding.tilPhone.editText?.setText(businessCard?.phone)
                     addCardBinding.tilEmail.editText?.setText(businessCard?.email)
                     addCardBinding.tilCompany.editText?.setText(businessCard?.company)
-                    val color = Color.parseColor(businessCard?.customBackground ?: "#FF00FFFF")
+                    val color = Color.parseColor(businessCard?.customBackground)
                     changeBtnColorValues(color)
                 }
             } catch (err: Exception) {
@@ -93,11 +93,11 @@ class AddBusinessCardActivity : AppCompatActivity(), ColorPickerDialogListener {
     private fun changeBtnColorValues(color: Int){
         addCardBinding.btnColor.setBackgroundColor(color)
         addCardBinding.btnColor.text = getString(R.string.color_value, Integer.toHexString(color).uppercase())
+        customBackgroundColor = color
     }
 
     override fun onColorSelected(dialogId: Int, color: Int) {
-        customBackgroundColor = color
-        changeBtnColorValues(customBackgroundColor)
+        changeBtnColorValues(color)
     }
 
     override fun onDialogDismissed(dialogId: Int) {
