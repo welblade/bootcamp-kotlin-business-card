@@ -82,13 +82,12 @@
                     android:id="@+id/btn_delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_delete"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.10"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     android:contentDescription="@string/delete_this_business_card"
+                    android:src="@drawable/ic_delete"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_edit"
+                    app:layout_constraintEnd_toStartOf="@id/btn_edit"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/btn_edit"
                     app:tint="@color/dark_grey" />
             <TextView
                     android:layout_width="wrap_content"
@@ -97,7 +96,7 @@
                     app:layout_constraintTop_toBottomOf="@id/btn_delete"
                     app:layout_constraintEnd_toEndOf="@id/btn_delete"
                     style="@style/TextAppearance.MaterialComponents.Caption"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="0dp"
                     android:text="@string/remove" />
 
 
@@ -107,11 +106,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_edit"
-                    app:layout_constraintBottom_toBottomOf="@id/btn_delete"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.30"
-                    app:layout_constraintStart_toEndOf="@id/btn_delete"
-                    app:layout_constraintTop_toTopOf="@id/btn_delete"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintVertical_bias="0.4"
                     android:contentDescription="@string/edit_this_card_information"
                     app:tint="@color/dark_grey"/>
             <TextView
@@ -120,7 +120,7 @@
                     app:layout_constraintStart_toStartOf="@id/btn_edit"
                     app:layout_constraintTop_toBottomOf="@id/btn_edit"
                     app:layout_constraintEnd_toEndOf="@id/btn_edit"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="0dp"
                     style="@style/TextAppearance.MaterialComponents.Caption"
                     android:text="@string/edit" />
 
@@ -129,11 +129,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_share"
-                    app:layout_constraintBottom_toBottomOf="@id/btn_delete"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_edit"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.80"
-                    app:layout_constraintStart_toEndOf="@id/btn_delete"
-                    app:layout_constraintTop_toTopOf="@id/btn_delete"
+                    app:layout_constraintStart_toEndOf="@id/btn_edit"
+                    app:layout_constraintTop_toTopOf="@id/btn_edit"
                     android:contentDescription="@string/share_this_card"
                     app:tint="@color/dark_grey" />
             <TextView
@@ -142,7 +141,7 @@
                     app:layout_constraintStart_toStartOf="@id/btn_share"
                     app:layout_constraintTop_toBottomOf="@id/btn_share"
                     app:layout_constraintEnd_toEndOf="@id/btn_share"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="0dp"
                     style="@style/TextAppearance.MaterialComponents.Caption"
                     android:text="@string/share" />
         </androidx.constraintlayout.widget.ConstraintLayout>
