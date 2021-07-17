@@ -15,4 +15,4 @@ Em adicção ao aplicativo do instrutor eu adicionei:
 
 Previsualização
 
-![Previsualização](https://github.com/welblade/welblade/blob/main/images/preview.gif?raw=true)
+![Previsualização](https://user-images.githubusercontent.com/637273/126038625-5291857e-7956-42dd-b1d6-71014c8cddf4.gif)
